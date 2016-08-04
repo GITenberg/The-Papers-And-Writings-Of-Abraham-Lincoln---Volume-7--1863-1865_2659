@@ -1,0 +1,35 @@
+_repo: The-Papers-And-Writings-Of-Abraham-Lincoln---Volume-7--1863-1865_2659
+_version: 0.0.1
+creator:
+  author:
+    agent_name: Lincoln, Abraham
+    aliases:
+    - United States President (1861-1865)
+    - Lincoln, Abe
+    birthdate: 1809
+    deathdate: 1865
+    gutenberg_agent_id: '3'
+    url: http://www.gutenberg.org/2009/agents/3
+    wikipedia: http://en.wikipedia.org/wiki/Abraham_Lincoln
+  editor:
+    agent_name: Lapsley, Arthur Brooks
+    gutenberg_agent_id: '26579'
+    url: http://www.gutenberg.org/2009/agents/26579
+description: ''
+gutenberg_bookshelf: US Civil War
+gutenberg_issued: '2004-09-30'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '2659'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'United States -- History -- Civil War, 1861-1865'
+- !lcsh 'Lincoln, Abraham, 1809-1865 -- Correspondence'
+- !lcsh 'United States -- Politics and government -- 1861-1865'
+- !lcc 'E456'
+- GITenberg
+title: 'The Papers And Writings Of Abraham Lincoln — Volume 7: 1863-1865'
+url: http://www.gutenberg.org/ebooks/2659
