@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: d0wM9cIPjpmVPv9QT3sXGGSCBGFD3JjGfFI93UkD2IhjpGfm8pf6UCQv15/R07KULDMMFL+RlSPiTeU+SDl0czB6SiFA362UCKEmZMOAiApTt3W98iqR+wIUg17abhE9laHIwH2+2vX24oPB8zXK+BERbCDbOnwPOuPB/FJuFDLdNRRlvdTCbmmalvhji/QMCVLHxphcQYZIAtwXFZIthFpmbTN+d8GODEKrYYc/yCe98JSzXsbsxfsnJ8eXzQMu2U9FCy7yN24zwrdxzSIuqle5vxpIZdAsy5UYTurqGTU+NNR9zOsU2byKtqr8WJh93FaD5vuKvEeIDif0RORLt9N0pCN+8b6hKN8Cc9jt+scT9FFEEsZuwsQ8H0XzCYLvB481cB7m5T9Lo8pTHdFIyBUdaIjM+MNFNPDOU9WNwWvKzpmWzCImVxqn+FQ8YwV3+GMN8m8zIXuE68gGvILniDVlRqP7sDr5v7+CaMp6LkGaTe8i9Xoby+bFdf8ITYk5zab3yTE8kMFHVetZgZahvZJl7MU3ky6R14Y/RLqJpkuNcU9wkSwq5UecqZZaM0MIzAZKimjSpICg104K0t7QDIZ+XwwazinBxeLGVyhXFbPgP7+WdAvIYBhgPG0k6ie8tQOTLw0v0+gxxT4TptklCa566bozQ0PQGCu6jAfwG7I=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/The-Papers-And-Writings-Of-Abraham-Lincoln---Volume-7--1863-1865_2659
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
